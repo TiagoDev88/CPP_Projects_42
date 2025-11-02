@@ -8,6 +8,7 @@ int main(void){
 	std::string line;
 
 	std::cout << "Welcome to Phonebook" << std::endl;
+	Phone.init();
 	while (1)
 	{
 		std::cout << "What do you want to do?" << std::endl;
@@ -17,15 +18,16 @@ int main(void){
 		std::cin >> line;
 
 		std::cout << line << std::endl;
+
 		if (line == "SEARCH")
-			break; // vou colocar aqui a funcao para procurar os contactos
+			break;
+		// Phone.Search_Contact(line);
 		else if (line == "ADD")
-			break; // vou colocar aqui a funcao para o ADD contact
+			Phone.Add_Contact();
 		else if (line == "EXIT")
 			return 0;
 		else
 			std::cout << "Invalid option!" << std::endl;
-		// break;
 	}
 	return 0;
 }

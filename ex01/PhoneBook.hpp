@@ -1,7 +1,7 @@
-
+#ifndef PHONEBOOK_HPP
+# define PHONEBOOK_HPP
 
 #include <iostream>
-
 #include "Contact.hpp"
 
 class Phonebook{
@@ -10,9 +10,15 @@ class Phonebook{
 		Phonebook();
 		~Phonebook();
 
-		void Add_Contact();
-		void Search_Contact();
+		void init(void);
+		void Add_Contact(void);
+		void Search_Contact(std::string line);
+		int plus_index(void);
 
 	private:
-		Contact contact[8];
+		Contact _contact[8];
+		int _index;
+		int _count_contacts;
 };
+
+#endif
