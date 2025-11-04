@@ -7,25 +7,19 @@ int main(void){
 
 	std::string line;
 
-	std::cout << "Welcome to Phonebook" << std::endl;
-	Phone.init();
-	while (1)
+	std::cout << "---Welcome to Phonebook---" << std::endl;
+	while (true)
 	{
-		std::cout << "What do you want to do?" << std::endl;
-		std::cout << "SEARCH" << std::endl;
-		std::cout << "ADD" << std::endl;
-		std::cout << "EXIT" << std::endl;
-		std::cin >> line;
-
-		std::cout << line << std::endl;
-
-		if (line == "SEARCH")
+		std::cout << "\nPlease enter a command: ";
+		std::cout << "(ADD, SEARCH, EXIT)" << std::endl;
+		if(!std::getline(std::cin, line))
 			break;
-		// Phone.Search_Contact(line);
+		if (line == "SEARCH")
+			Phone.Search_Contact();
 		else if (line == "ADD")
 			Phone.Add_Contact();
 		else if (line == "EXIT")
-			return 0;
+			break;
 		else
 			std::cout << "Invalid option!" << std::endl;
 	}
