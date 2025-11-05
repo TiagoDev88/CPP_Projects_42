@@ -76,32 +76,41 @@ void Contact::new_contact(Contact *contact){
 
 	std::string line;
 	std::cout << "insert firstname\n";
-	std::cin >> line;
+	std::getline(std::cin, line);
 	while (!is_alpha(line))
 	{
 		std::cerr << "insert valid name! Only letters\n";
-		std::cin >> line;
+		std::getline(std::cin, line);
 	}
 	contact->set_firstname(line);
+
 	std::cout << "Insert Last name\n";
-	std::cin >> line;
+	std::getline(std::cin, line);
 	while (!is_alpha(line)){
 		std::cerr << "insert valid name! Only letters\n";
-		std::cin >> line;
+		std::getline(std::cin, line);
 	}
 	contact->set_lastname(line);
+
 	std::cout << "Insert Nickname\n";
-	std::cin >> line;
+	std::string line1;
+	std::getline(std::cin, line1);
+	line.clear();
+	line.replace(line1.begin(), line1.end(), '\t', 32);
 	contact->set_nickname(line);
+
 	std::cout << "Insert Phone Number\n";
-	std::cin >> line;
-	while (!is_phone_number(line))
+	while (std::getline(std::cin, line))
 	{
-		std::cerr << "Insert valid phone number! Ex: +351 910 152 420 or 910 152 420";
-		std::cin >> line;
+		if (!is_phone_number(line)){
+			std::cerr << "Insert valid phone number! Ex: +351 910 152 420 or 910 152 420\n";
+			continue;
+		}
+		break;
 	}
 	contact->set_phonenumber(line);
+
 	std::cout << "Insert Darkest Secret\n";
-	std::cin >> line;
+	std::getline(std::cin, line);
 	contact->set_darkest_secret(line);
 }

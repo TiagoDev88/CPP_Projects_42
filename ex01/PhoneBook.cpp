@@ -43,7 +43,7 @@ void Phonebook::Search_Contact(void){
 		if (nickname.length() > 10)
 			nickname = nickname.substr(0, 9) + ".";
 			
-		std::cout << std::setw(10) << nickname << std::endl;
+		std::cout << std::setw(10) << nickname << "|" << std::endl;
 	}
 }
 
