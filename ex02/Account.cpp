@@ -18,11 +18,11 @@ int	Account::getTotalAmount( void )
 }
 int	Account::getNbDeposits( void )
 {
-	return _nbDeposits;
+	return _totalNbDeposits;
 }
 int	Account::getNbWithdrawals( void )
 {
-	return _nbWithdrawals;
+	return _totalNbWithdrawals;
 }
 void	Account::displayAccountsInfos( void )
 {
@@ -30,11 +30,11 @@ void	Account::displayAccountsInfos( void )
 }
 void	Account::makeDeposit( int deposit )
 {
-	this->_amount = deposit;
+	this->_amount += deposit;
 }
 bool	Account::makeWithdrawal( int withdrawal )
 {
-
+	this->_amount -= withdrawal;
 }
 int		Account::checkAmount( void ) const
 {
