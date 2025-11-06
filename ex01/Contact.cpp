@@ -46,71 +46,56 @@ void Contact::set_phonenumber(std::string phone){
 	this->_phone_number = phone;
 }
 
-int is_alpha(std::string s)
+std::string Contact::get_input(std::string s, int flag)
 {
-	int i = 0;
-	while (s[i])
-	{
-		if (!std::isalpha(s[i]) && !std::isspace(s[i]))
-			return (0);
-		i++;
-	}
-	return 1;
-}
-
-int is_phone_number(std::string s)
-{
-	int i = 0;
-	while (s[i])
-	{
-		if (std::isdigit(s[i]) || std::isspace(s[i]) || s[i] == '+')
-			i++;
-		else
-			return (0);
-	}
-	return 1;
-}
-
-
-void Contact::new_contact(Contact *contact){
-
 	std::string line;
-	std::cout << "insert firstname\n";
-	std::getline(std::cin, line);
-	while (!is_alpha(line))
-	{
-		std::cerr << "insert valid name! Only letters\n";
-		std::getline(std::cin, line);
-	}
-	contact->set_firstname(line);
 
-	std::cout << "Insert Last name\n";
-	std::getline(std::cin, line);
-	while (!is_alpha(line)){
-		std::cerr << "insert valid name! Only letters\n";
-		std::getline(std::cin, line);
-	}
-	contact->set_lastname(line);
-
-	std::cout << "Insert Nickname\n";
-	std::string line1;
-	std::getline(std::cin, line1);
-	line.clear();
-	line.replace(line1.begin(), line1.end(), '\t', 32);
-	contact->set_nickname(line);
-
-	std::cout << "Insert Phone Number\n";
 	while (std::getline(std::cin, line))
 	{
-		if (!is_phone_number(line)){
-			std::cerr << "Insert valid phone number! Ex: +351 910 152 420 or 910 152 420\n";
+		if (line.empty() || is_only_space(line))
+		{
+			std::cout << "Empty input is not allowed!\n" << s;
+			line.clear();
+			continue;
+		}
+		else if (flag == 1 && !is_alpha(line))
+		{
+			std::cout << "Insert valid name! Only letters\n" << s;
+			line.clear();
+			continue;
+		}
+		else if (flag == 2 && !is_number(line))
+		{
+			std::cout << "Insert valid phone number!\n" << s;
+			line.clear();
 			continue;
 		}
 		break;
 	}
+	line = clear_line(line);
+	return line;
+}
+void Contact::set_newcontact(Contact *contact){
+
+	std::string line;
+
+	std::cout << "Insert First Name: ";
+	line = get_input("Insert First Name: ", 1);
+	contact->set_firstname(line);
+
+	std::cout << "Insert Last Name: ";
+	line = get_input("Insert Last Name: ", 1);
+	contact->set_lastname(line);
+
+	std::cout << "Insert Nickname: ";
+	line = get_input("Insert Nickname: ", 0);
+	contact->set_nickname(line);
+
+	std::cout << "Insert Phone Number: ";
+	line = get_input("Insert Phone Number: ", 2);
 	contact->set_phonenumber(line);
 
-	std::cout << "Insert Darkest Secret\n";
-	std::getline(std::cin, line);
+	std::cout << "Insert Darkest Secret: ";
+	line = get_input("Insert Darkest Secret: ", 0);
 	contact->set_darkest_secret(line);
 }

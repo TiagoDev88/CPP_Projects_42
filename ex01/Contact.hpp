@@ -1,11 +1,8 @@
 #ifndef CONTACT_H
 # define CONTACT_H
 
-#include <string>
-#include <iomanip>
-#include <iostream>
-#include <cctype>
 
+#include "Utils.hpp"
 class Contact {
 
 	public:
@@ -16,12 +13,13 @@ class Contact {
 		std::string get_nickname(void);
 		std::string get_phonenumber(void);
 		std::string get_darkestsecret(void);
+		std::string get_input(std::string s, int flag);
 		void set_firstname(std::string firstname);
 		void set_lastname(std::string lastname);
 		void set_nickname(std::string nickname);
 		void set_phonenumber(std::string phonenumber);
 		void set_darkest_secret(std::string darkest_secret);
-		void new_contact(Contact *contact);
+		void set_newcontact(Contact *contact);
 
 	private:
 		std::string _first_name;
