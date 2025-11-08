@@ -6,15 +6,54 @@ Aqui vai ser as horas index:4;amount:1234;created
 Aqui vai ser as horas index:5;amount:0;created
 Aqui vai ser as horas index:6;amount:754;created
 Aqui vai ser as horas index:7;amount:16576;created
-Aqui vai ser as horas accounts:1;total:1;deposits:1;withdrawals:1
-Aqui vai ser as horas index:0;amount:42Aqui vai ser as horas index:1;amount:54Aqui vai ser as horas index:2;amount:957Aqui vai ser as horas index:3;amount:432Aqui vai ser as horas index:4;amount:1234Aqui vai ser as horas index:5;amount:0Aqui vai ser as horas index:6;amount:754Aqui vai ser as horas index:7;amount:1657647
-866
-2387
-2821
-4142
-4165
-4928
-21524
-Aqui vai ser as horas accounts:1;total:1;deposits:1;withdrawals:1
-Aqui vai ser as horas index:0;amount:47Aqui vai ser as horas index:1;amount:819Aqui vai ser as horas index:2;amount:1521Aqui vai ser as horas index:3;amount:434Aqui vai ser as horas index:4;amount:1321Aqui vai ser as horas index:5;amount:23Aqui vai ser as horas index:6;amount:763Aqui vai ser as horas index:7;amount:16596Aqui vai ser as horas accounts:1;total:1;deposits:1;withdrawals:1
-Aqui vai ser as horas index:0;amount:47Aqui vai ser as horas index:1;amount:785Aqui vai ser as horas index:2;amount:864Aqui vai ser as horas index:3;amount:430Aqui vai ser as horas index:4;amount:1245Aqui vai ser as horas index:5;amount:23Aqui vai ser as horas index:6;amount:106Aqui vai ser as horas index:7;amount:8942
+Aqui vai ser as horas accounts:8;total:20049;deposits:0;withdrawals:0
+Aqui vai ser as horas index:0;amount:42;deposits:0;withdrawals:0
+Aqui vai ser as horas index:1;amount:54;deposits:0;withdrawals:0
+Aqui vai ser as horas index:2;amount:957;deposits:0;withdrawals:0
+Aqui vai ser as horas index:3;amount:432;deposits:0;withdrawals:0
+Aqui vai ser as horas index:4;amount:1234;deposits:0;withdrawals:0
+Aqui vai ser as horas index:5;amount:0;deposits:0;withdrawals:0
+Aqui vai ser as horas index:6;amount:754;deposits:0;withdrawals:0
+Aqui vai ser as horas index:7;amount:16576;deposits:0;withdrawals:0
+Aqui vai ser as horas index:0;p_amount:42;deposit:5;amount:47;nb_deposits:1
+Aqui vai ser as horas index:1;p_amount:54;deposit:765;amount:819;nb_deposits:1
+Aqui vai ser as horas index:2;p_amount:957;deposit:564;amount:1521;nb_deposits:1
+Aqui vai ser as horas index:3;p_amount:432;deposit:2;amount:434;nb_deposits:1
+Aqui vai ser as horas index:4;p_amount:1234;deposit:87;amount:1321;nb_deposits:1
+Aqui vai ser as horas index:5;p_amount:0;deposit:23;amount:23;nb_deposits:1
+Aqui vai ser as horas index:6;p_amount:754;deposit:9;amount:763;nb_deposits:1
+Aqui vai ser as horas index:7;p_amount:16576;deposit:20;amount:16596;nb_deposits:1
+Aqui vai ser as horas accounts:8;total:21524;deposits:8;withdrawals:0
+Aqui vai ser as horas index:0;amount:47;deposits:1;withdrawals:0
+Aqui vai ser as horas index:1;amount:819;deposits:1;withdrawals:0
+Aqui vai ser as horas index:2;amount:1521;deposits:1;withdrawals:0
+Aqui vai ser as horas index:3;amount:434;deposits:1;withdrawals:0
+Aqui vai ser as horas index:4;amount:1321;deposits:1;withdrawals:0
+Aqui vai ser as horas index:5;amount:23;deposits:1;withdrawals:0
+Aqui vai ser as horas index:6;amount:763;deposits:1;withdrawals:0
+Aqui vai ser as horas index:7;amount:16596;deposits:1;withdrawals:0
+Aqui vai ser as horas index:0;p_amount:47;withdrawal:refused
+Aqui vai ser as horas index:1;p_amount:819;withdrawal:34;amount:785;nb_withdrawals:1
+Aqui vai ser as horas index:2;p_amount:1521;withdrawal:657;amount:864;nb_withdrawals:1
+Aqui vai ser as horas index:3;p_amount:434;withdrawal:4;amount:430;nb_withdrawals:1
+Aqui vai ser as horas index:4;p_amount:1321;withdrawal:76;amount:1245;nb_withdrawals:1
+Aqui vai ser as horas index:5;p_amount:23;withdrawal:refused
+Aqui vai ser as horas index:6;p_amount:763;withdrawal:657;amount:106;nb_withdrawals:1
+Aqui vai ser as horas index:7;p_amount:16596;withdrawal:7654;amount:8942;nb_withdrawals:1
+Aqui vai ser as horas accounts:8;total:12442;deposits:8;withdrawals:6
+Aqui vai ser as horas index:0;amount:47;deposits:1;withdrawals:0
+Aqui vai ser as horas index:1;amount:785;deposits:1;withdrawals:1
+Aqui vai ser as horas index:2;amount:864;deposits:1;withdrawals:1
+Aqui vai ser as horas index:3;amount:430;deposits:1;withdrawals:1
+Aqui vai ser as horas index:4;amount:1245;deposits:1;withdrawals:1
+Aqui vai ser as horas index:5;amount:23;deposits:1;withdrawals:0
+Aqui vai ser as horas index:6;amount:106;deposits:1;withdrawals:1
+Aqui vai ser as horas index:7;amount:8942;deposits:1;withdrawals:1
+Aqui vai ser as horas index:0;amount:47;closed
+Aqui vai ser as horas index:1;amount:785;closed
+Aqui vai ser as horas index:2;amount:864;closed
+Aqui vai ser as horas index:3;amount:430;closed
+Aqui vai ser as horas index:4;amount:1245;closed
+Aqui vai ser as horas index:5;amount:23;closed
+Aqui vai ser as horas index:6;amount:106;closed
+Aqui vai ser as horas index:7;amount:8942;closed
