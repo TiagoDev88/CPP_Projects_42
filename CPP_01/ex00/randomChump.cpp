@@ -3,6 +3,6 @@
 
 void randomChump( std::string name )
 {
-	Zombie first = name;
-	first.announce();
+	Zombie zombie_in_stack(name);
+	zombie_in_stack.announce();
 }

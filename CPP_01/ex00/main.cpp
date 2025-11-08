@@ -4,10 +4,10 @@
 
 int main(void)
 {
-	Zombie *tiago = newZombie("TIAGO");
-	randomChump("Kiko");
+	Zombie *tiago_heap = newZombie("TIAGO_HEAP");
+	tiago_heap->announce();
+	delete tiago_heap;
 
-	tiago->announce();
-	delete tiago;
+	randomChump("Kiko_STACK");
 	return 0;
 }
