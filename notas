@@ -1,0 +1,4 @@
+por exemplo para retirar os espacos e enviar para um ficheiro, do test1 para aa
+cut -d' ' -f2- test1 > aa 
+
+e depois diff FILE1 FILE2
