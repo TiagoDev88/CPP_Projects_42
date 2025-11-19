@@ -4,7 +4,8 @@
 
 Zombie::Zombie()
 {
-    
+    std::cout << "Constructor" << std::endl;
+    _name = "noName";
 }
 
 Zombie::~Zombie(){}
