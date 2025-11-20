@@ -8,11 +8,11 @@ class Contact {
 	public:
 		Contact();
 		~Contact();
-		std::string get_firstname(void);
-		std::string get_lastname(void);
-		std::string get_nickname(void);
-		std::string get_phonenumber(void);
-		std::string get_darkestsecret(void);
+		std::string get_firstname(void) const;
+		std::string get_lastname(void) const;
+		std::string get_nickname(void) const;
+		std::string get_phonenumber(void) const;
+		std::string get_darkestsecret(void) const;
 		std::string get_input(std::string s, int flag);
 		void set_firstname(std::string firstname);
 		void set_lastname(std::string lastname);

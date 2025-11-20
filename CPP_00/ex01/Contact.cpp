@@ -5,23 +5,28 @@ Contact::Contact() {}
 
 Contact::~Contact() {}
 
-std::string Contact::get_firstname(void){
+std::string Contact::get_firstname(void) const
+{
 	return this->_first_name;
 }
 
-std::string Contact::get_lastname(void){
+std::string Contact::get_lastname(void) const
+{
 	return this->_last_name;
 }
 
-std::string Contact::get_nickname(void){
+std::string Contact::get_nickname(void) const
+{
 	return this->_nickname;
 }
 
-std::string Contact::get_phonenumber(void){
+std::string Contact::get_phonenumber(void) const
+{
 	return this->_phone_number;
 }
 
-std::string Contact::get_darkestsecret(void){
+std::string Contact::get_darkestsecret(void) const
+{
 	return this->_darkest_secret;
 }
 
