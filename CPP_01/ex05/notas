@@ -1,7 +1,9 @@
 Harl 2.0
+
 Turn-in directory: ex05/
 Files to turn in: Makefile, main.cpp, Harl.{h, hpp}, Harl.cpp
 Forbidden functions: None
+
 Do you know Harl? We all do, don’t we? In case you don’t, find below the kind of
 comments Harl makes. They are classified by levels:
 • "DEBUG" level: Debug messages contain contextual information. They are mostly

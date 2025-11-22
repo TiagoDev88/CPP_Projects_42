@@ -1,7 +1,7 @@
 CC = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = SedIsForLosers
+NAME = Harl
 
 SRCS = main.cpp
 
