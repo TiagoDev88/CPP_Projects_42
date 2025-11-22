@@ -1,0 +1,3 @@
+Hello my friend!
+This is my test file.
+Thank you for evaluating.
