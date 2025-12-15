@@ -1,7 +1,7 @@
 #include "../inc/Character.hpp"
 
 const int Character::_maxInv = 4;
-// tenho que colocar a NULL os ponteiros senao da erro de condition jump
+
 Character::Character() : _name("NoName"), _countEquip(0) 
 {
     for (int i = 0; i < _maxInv; i++)
@@ -47,7 +47,7 @@ Character& Character::operator=(const Character& other)
     }
     return *this;
 }
-//Of course, the Materias must be deleted when a Character is destroyed.
+
 Character::~Character() 
 {
     for (int i = 0; i < _maxInv; i++)
@@ -73,7 +73,6 @@ void Character::equip(AMateria* m)
             return;
         }
     }
-    delete m;
 }
 
 void Character::unequip(int idx)
@@ -81,13 +80,15 @@ void Character::unequip(int idx)
     if (idx < 0 || idx > 3)
     {
         std::cout << "Slot out of range! " << std::endl;
+        return;
     }
 
     if (_slot[idx])
     {
-        _slot[idx] = NULL;
         std::cout << _slot[idx]->getType() << " unequip from slot "
                   << idx << std::endl;
+        delete _slot[idx];
+        _slot[idx] = NULL;
     }
 }
 
