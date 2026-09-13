@@ -1,6 +1,6 @@
 #pragma once
 
-#include <cstddef>
+#include <cstdlib>
 #include <iostream>
 
 template<typename T>
@@ -16,6 +16,10 @@ class Array
     Array(const Array<T>& other);
     Array<T>& operator=(const Array<T>& other);
     ~Array();
+
+    T& operator[](unsigned int num);
+    const T& operator[](unsigned int num) const;
+    unsigned int size() const;
 };
 
 

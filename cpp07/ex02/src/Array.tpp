@@ -1,23 +1,14 @@
 
 template<typename T>
-Array<T>::Array() : _arr(NULL), _size(0)
-{
-    std::cout << "Constructor Default\n";
-}
+Array<T>::Array() : _arr(NULL), _size(0) {}
 
 
 template<typename T>
-Array<T>::Array(unsigned int n) : _arr(new T[n]), _size(n)
-{
-    for(size_t i = 0; i < n; i++)
-        _arr[i] = T();
-    std::cout << "Constructor with unsigned int\n";
-}
+Array<T>::Array(unsigned int n) : _arr(new T[n]()), _size(n) {}
 
 template<typename T>
 Array<T>::Array(const Array<T>& other) : _arr(new T[other._size]), _size(other._size)
 {
-    std::cout << "Copy Operator\n";
     for(size_t i = 0; i < other._size; i++)
         _arr[i] = other._arr[i];
 
@@ -26,7 +17,6 @@ Array<T>::Array(const Array<T>& other) : _arr(new T[other._size]), _size(other._
 template<typename T>
 Array<T>& Array<T>::operator=(const Array<T>& other)
 {
-    std::cout << "Assignment Operator\n";
     if (this != &other)
     {
         delete[] _arr;
@@ -39,8 +29,25 @@ Array<T>& Array<T>::operator=(const Array<T>& other)
 }
 
 template<typename T>
-Array<T>::~Array()
+Array<T>::~Array() { delete[] _arr; }
+
+template<typename T>
+T& Array<T>::operator[](unsigned int num)
 {
-    std::cout << "DESTRUCTOR\n";
-    delete[] _arr;
+    if (num >= _size)
+        throw std::out_of_range("index out of bounds");
+
+    return this->_arr[num];    
 }
+
+template<typename T>
+const T& Array<T>::operator[](unsigned int num) const
+{
+    if (num >= _size)
+        throw std::out_of_range("index out of bounds");
+
+    return this->_arr[num];    
+}
+
+template<typename T>
+unsigned int Array<T>::size() const { return _size; }
