@@ -1,22 +1,25 @@
 
 template<typename T>
-Array<T>::Array() : arr()
+Array<T>::Array() : _arr(NULL), _size(0)
 {
     std::cout << "Constructor Default\n";
-    
 }
 
+
 template<typename T>
-Array<T>::Array(T value) : arr(value) 
+Array<T>::Array(unsigned int n) : _arr(new T[n]), _size(n)
 {
-    std::cout << "Constructor with value\n";
-
+    for(size_t i = 0; i < n; i++)
+        _arr[i] = T();
+    std::cout << "Constructor with unsigned int\n";
 }
 
 template<typename T>
-Array<T>::Array(const Array<T>& other) : arr(other.arr) 
+Array<T>::Array(const Array<T>& other) : _arr(new T[other._size]), _size(other._size)
 {
     std::cout << "Copy Operator\n";
+    for(size_t i = 0; i < other._size; i++)
+        _arr[i] = other._arr[i];
 
 }
 
@@ -25,20 +28,19 @@ Array<T>& Array<T>::operator=(const Array<T>& other)
 {
     std::cout << "Assignment Operator\n";
     if (this != &other)
-        arr = other.arr;
-
+    {
+        delete[] _arr;
+        _arr = new T[other._size];
+        _size = other._size;
+        for(size_t i = 0; i < _size; i++)
+            _arr[i] = other._arr[i];
+    }
     return *this;
-
 }
 
 template<typename T>
 Array<T>::~Array()
 {
     std::cout << "DESTRUCTOR\n";
-}
-
-template<typename T>
-T Array<T>::getArr() const
-{
-    return arr;
+    delete[] _arr;
 }

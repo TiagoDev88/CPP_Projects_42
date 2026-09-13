@@ -7,15 +7,15 @@ template<typename T>
 class Array
 {
     private:
-    T arr;
+    T* _arr;
+    unsigned int _size;
 
     public:
     Array();
-    Array(T value);
-    Array(const Array& other);
-    Array& operator=(const Array& other);
+    Array(unsigned int n);
+    Array(const Array<T>& other);
+    Array<T>& operator=(const Array<T>& other);
     ~Array();
-    T getArr() const;
 };
 
 
