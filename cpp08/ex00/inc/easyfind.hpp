@@ -1,16 +1,23 @@
 #pragma once
 
-#include <cstdlib>
 #include <algorithm>
-#include <iostream>
+#include <exception>
+
+class NotFoundException : public std::exception
+{
+    public:
+    virtual const char* what() const throw()
+    {
+        return "Value was not found in the container.";
+    }
+};
 
 template<typename T>
-T easyfind(T& container, int sec)
+typename T::iterator easyfind(T& container, int value)
 {
-    typename T::iterator it = container.begin();
-    for (typename T::iterator it = container.begin(); it != container.end(); ++it)
-    {
-        if (*it == sec)
-            std::cout << "ENCONTREI\n";
-    }
+    typename T::iterator it = std::find(container.begin(), container.end(), value);
+    if (it == container.end())
+        throw NotFoundException();
+    else
+        return it;
 }
