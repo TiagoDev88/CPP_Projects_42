@@ -2,13 +2,15 @@
 
 
 #include <vector>
-
+#include <iostream>
+#include <exception>
+#include <algorithm>
 
 
 class Span
 {
     private:
-    unsigned int _n;
+    unsigned int _capacity;
     std::vector<int> _storage;
 
     public:
@@ -19,6 +21,6 @@ class Span
     ~Span();
 
     void addNumber(int n);
-    int shortestSpan();
-    int longestSpan();
+    int shortestSpan() const;
+    int longestSpan() const;
 };
