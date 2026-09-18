@@ -31,7 +31,7 @@ void Span::addNumber(int n)
         throw std::range_error("Error: Span is full!");
 }
 
-int Span::shortestSpan() const
+unsigned int Span::shortestSpan() const
 {
     if (_storage.size() < 2)
         throw std::logic_error("Error: Not enough numbers, please add min two numbers.");
@@ -49,7 +49,7 @@ int Span::shortestSpan() const
     return minDistance;
 }
 
-int Span::longestSpan() const
+unsigned int Span::longestSpan() const
 {
     if (_storage.size() < 2)
         throw std::logic_error("Error: Not enough numbers, please add min two numbers.");
@@ -67,3 +67,8 @@ int Span::longestSpan() const
     }
     return maxDistance;
 }
+
+// como o longestSpan, e sempre a diferenca entre o primeiro elemento
+// e o segundo elemento, basta subtrair o ultimo pelo primeiro e tenho a distancia.
+// nao preciso de fazer o for, porque ja sei os valores ordenados
+// uso o tmp.front() e o tmp.back() -> para ir buscar o valor em vez do ponteiro.
