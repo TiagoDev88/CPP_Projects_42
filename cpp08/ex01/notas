@@ -46,6 +46,6 @@ $>
 Last but not least, it would be wonderful to fill your Span using a range of iterators.
 Making thousands of calls to addNumber() is so annoying.
 Implement a member function to add multiple numbers to your Span in a single call.
-If you don’t have a clue, study the Containers.
+If you don't have a clue, study the Containers.
 Some member functions take a range of iterators in order to add a sequence of
 elements to the container.

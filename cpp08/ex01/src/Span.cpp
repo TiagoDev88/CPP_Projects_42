@@ -1,11 +1,8 @@
 #include "../inc/Span.hpp"
 
-Span::Span() : _storage() {}
+Span::Span() : _capacity(0), _storage() {}
 
-Span::Span(unsigned int capacity) : _capacity(capacity)
-{
-    // _storage.reserve(capacity);
-}
+Span::Span(unsigned int capacity) : _capacity(capacity), _storage() {}
 
 Span::Span(const Span& other) :
  _capacity(other._capacity), _storage(other._storage)  {}
@@ -36,17 +33,12 @@ void Span::addNumber(int n)
 
 int Span::shortestSpan() const
 {
-    /*
-     aqui verificar se tenho so um numero
-     porque so um numero nao posso comparar.
-     caso tenha so um numero, lanco excecao
-    */
     if (_storage.size() < 2)
         throw std::logic_error("Error: Not enough numbers, please add min two numbers.");
 
     std::vector<int> tmp = _storage;
-    std::sort(tmp.begin(), tmp.end());
-    unsigned int minDistance = tmp[1] - tmp[0]; // verifica o segundo com o primeiro.
+    std::sort(tmp.begin(), tmp.end(), std::less<int>());
+    unsigned int minDistance = tmp[1] - tmp[0];
 
     for(unsigned int i = 1; i < tmp.size() - 1; ++i)
     {
@@ -55,30 +47,23 @@ int Span::shortestSpan() const
             minDistance = distanceNextNumber; 
     }
     return minDistance;
-    
 }
 
 int Span::longestSpan() const
 {
-    /*
-     aqui verificar se tenho so um numero
-     porque so um numero nao posso comparar.
-     caso tenha so um numero, lanco excecao
-    */
     if (_storage.size() < 2)
         throw std::logic_error("Error: Not enough numbers, please add min two numbers.");
 
     std::vector<int> tmp = _storage;
     std::sort(tmp.begin(), tmp.end(), std::greater<int>());
-    unsigned int minDistance = tmp[0] - tmp[1]; // verifica o segundo com o primeiro.
+    
+    unsigned int maxDistance = 0;
 
-    for (unsigned int i = tmp.size() - 1; i > 0; i--)
-    std::cout << tmp[i] << ", ";
-    // for(unsigned int i = 0; i < tmp.size() - 1; ++i)
-    // {
-    //     int distanceNextNumber = tmp[i + 1] - tmp[i];
-    //     if (distanceNextNumber > minDistance)
-    //         minDistance = distanceNextNumber; 
-    // }
-    return minDistance;
+    for(unsigned int i = 1; i < tmp.size(); ++i)
+    {
+        unsigned int distanceNextNumber = tmp[0] - tmp[i];
+        if (distanceNextNumber > maxDistance)
+            maxDistance = distanceNextNumber; 
+    }
+    return maxDistance;
 }
