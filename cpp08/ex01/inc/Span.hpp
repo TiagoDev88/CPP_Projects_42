@@ -5,6 +5,8 @@
 #include <iostream>
 #include <exception>
 #include <algorithm>
+#include <stdexcept> // for out_of_range and logic_error
+#include <iterator> // for std::distance
 
 
 class Span
@@ -27,6 +29,9 @@ class Span
     template<typename T>
     void addMultipleNumbers(T begin, T end)
     {
-        
+        unsigned int distance = std::distance(begin, end);
+        if(distance > _capacity - _storage.size())
+            throw std::out_of_range("Error: Span is full!");
+        _storage.insert(_storage.end(), begin, end);
     }
 };
