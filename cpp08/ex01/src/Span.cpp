@@ -34,11 +34,11 @@ unsigned int Span::shortestSpan() const
 
     std::vector<int> tmp = _storage;
     std::sort(tmp.begin(), tmp.end());
-    unsigned int minDistance = static_cast<unsigned int>(static_cast<long long>(tmp[1]) - tmp[0]);
+    unsigned int minDistance = static_cast<unsigned int>(tmp[1]) - static_cast<unsigned int>(tmp[0]);
 
     for(unsigned int i = 1; i < tmp.size() - 1; ++i)
     {
-        unsigned int distanceNextNumber = static_cast<unsigned int>(static_cast<long long>(tmp[i + 1]) - tmp[i]);
+        unsigned int distanceNextNumber = static_cast<unsigned int>(tmp[i + 1]) - static_cast<unsigned int>(tmp[i]);
         if (distanceNextNumber < minDistance)
             minDistance = distanceNextNumber; 
     }
@@ -53,5 +53,5 @@ unsigned int Span::longestSpan() const
     std::vector<int> tmp = _storage;
     std::sort(tmp.begin(), tmp.end());
 
-    return static_cast<unsigned int>(static_cast<long long>(tmp.back()) - tmp.front());
+    return static_cast<unsigned int>(tmp.back()) - static_cast<unsigned int>(tmp.front());
 }
