@@ -36,9 +36,6 @@
 *.exe
 *.out
 *.app
-ex00
-ex01
-ex02
 
 # debug information files
 *.dwo
