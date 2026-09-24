@@ -3,12 +3,15 @@
 #include <iostream>
 #include <fstream>
 #include <map>
+#include <exception>
 
 
 class BitcoinExchange
 {
     private:
-    std::map<std::string, double> _dataBase;
+        std::map<std::string, double> _dataBase;
+        void readDatabase(const std::string &db);
+        void readInput();
     
     public:
         BitcoinExchange();

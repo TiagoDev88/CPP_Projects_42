@@ -1,5 +1,5 @@
 CXX         = c++
-CXXFLAGS    = -Wall -Wextra -Werror -std=c++98 
+# CXXFLAGS    = -Wall -Wextra -Werror -std=c++98 
 # CXXFLAGS    = -Wall -Wextra -Werror -std=c++98 -pedantic-errors
 NAME        = btc
 
@@ -9,7 +9,7 @@ SRC_PATH    = src
 INC_PATH    = inc
 INCLUDES    = -I$(INC_PATH)
 
-SRCS        = $(addprefix $(SRC_PATH)/, main.cpp )
+SRCS        = $(addprefix $(SRC_PATH)/, main.cpp BitcoinExchange.cpp)
 
 OBJS        = $(SRCS:$(SRC_PATH)/%.cpp=$(BUILD_PATH)/%.o)
 
