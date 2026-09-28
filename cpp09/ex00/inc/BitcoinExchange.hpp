@@ -10,12 +10,14 @@ class BitcoinExchange
 {
     private:
         std::map<std::string, double> _dataBase;
-        void readDatabase(const std::string &db);
         void readInput();
-    
-    public:
+        static bool isValidDate(const std::string &date);
+        
+        public:
         BitcoinExchange();
         BitcoinExchange(const BitcoinExchange& other);
         BitcoinExchange& operator=(const BitcoinExchange& other);
         ~BitcoinExchange();
+
+        void readDatabase(const std::string &db);
 };

@@ -2,7 +2,16 @@
 
 int main(int argc, char* argv[])
 {
-    BitcoinExchange btc;
+    try
+    {
+        BitcoinExchange btc;
+        btc.readDatabase("data.csv");
+        
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
 
     return 0;
 }
