@@ -2,9 +2,7 @@
 #include <iostream>
 #include <stack>
 #include <exception>
-
-
-
+#include <sstream>
 
 
 class RPN
