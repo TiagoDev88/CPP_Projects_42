@@ -17,12 +17,12 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& other)
 
 PmergeMe::~PmergeMe() {}
 
-void PmergeMe::fordJohnsonAlgorithm()
+static void jacobsthalNumbers(std::size_t number)
 {
 
 }
 
-void PmergeMe::sortAndDisplay()
+void PmergeMe::run()
 {
 
 }

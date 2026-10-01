@@ -8,7 +8,7 @@ class PmergeMe
     private:
     std::vector<int> _vec;
     std::deque<int> _deq;
-    void fordJohnsonAlgorithm();
+    static void jacobsthalNumbers(std::size_t number);
     std::vector<int> sortVector(std::vector<int>& vec);
     std::deque<int> sortDeque(std::deque<int>& deq);
 
@@ -18,5 +18,5 @@ class PmergeMe
     PmergeMe& operator=(const PmergeMe& other);
     ~PmergeMe();
 
-    void sortAndDisplay();
+    void run();
 };
