@@ -2,11 +2,14 @@
 
 #include <vector>
 #include <deque>
+#include <sstream>
+#include <iostream>
 
 class PmergeMe
 {
     private:
     std::vector<int> _vec;
+    std::vector<int> _input;
     std::deque<int> _deq;
     static void jacobsthalNumbers(std::size_t number);
     std::vector<int> sortVector(std::vector<int>& vec);
@@ -18,5 +21,5 @@ class PmergeMe
     PmergeMe& operator=(const PmergeMe& other);
     ~PmergeMe();
 
-    void run();
+    void run(int argc, char** argv);
 };
