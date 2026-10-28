@@ -26,3 +26,15 @@ void PmergeMe::run()
 {
 
 }
+
+// Merge-Insertion Sort ==  Ford-Johnson
+
+std::vector<int> PmergeMe::sortVector(std::vector<int>& vec)
+{
+
+}
+
+std::deque<int> PmergeMe::sortDeque(std::deque<int>& deq)
+{
+    
+}
