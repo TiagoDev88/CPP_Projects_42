@@ -37,7 +37,7 @@ void PmergeMe::run(int argc, char** argv)
             std::cout << "Nao e digito nem espaco\n";
         i++;
     }
-    sortVector(_input);
+    _vec = sortVector(_input);
     
     std::cout << std::endl;
     
@@ -46,10 +46,10 @@ void PmergeMe::run(int argc, char** argv)
         std::cout << _input[i] << ", " << std::endl;
     }
 
-    // for (size_t i = 0; i < _vec.size(); i++)
-    // {
-    //     std::cout << "vector " << _vec[i] << ", " << std::endl;
-    // }
+    for (size_t i = 0; i < _vec.size(); i++)
+    {
+        std::cout << "vector " << _vec[i] << ", " << std::endl;
+    }
     
 }
 
@@ -58,29 +58,39 @@ void PmergeMe::run(int argc, char** argv)
 std::vector<int> PmergeMe::sortVector(std::vector<int>& vec)
 {
     std::vector<int> high;
-    std::vector<int> low;
+
+    //fazer verificacao se e impar ou nao.
+    if (vec.size() < 2)
+        return vec;
 
     for (size_t i = 0; i < vec.size(); i++)
     {
         std::cout << "vector " << vec[i] << " with address " << &vec[i] << ", " << std::endl;
     }
 
+    std::vector<std::pair<int, int>> pair;
     for(size_t i = 0; i < vec.size(); i+=2)
     {
         if (vec[i] > vec[i + 1])
         {
+            pair.push_back(std::make_pair(vec[i], vec[i + 1]));
             high.push_back(vec[i]);
-            low.push_back(vec[i + 1]);
+            // low.push_back(vec[i + 1]);
         }
         else
         {
+            pair.push_back(std::make_pair(vec[i + 1], vec[i]));
             high.push_back(vec[i + 1]);
-            low.push_back(vec[i]);
+            // low.push_back(vec[i]);
         }
     }
-    sortVector(high);
-    _vec.insert(_vec.end(), high.begin(), high.end());
-    return _vec;
+    
+    // for (size_t i = 0; i < pair.size(); i++)
+    //     high.push_back(pair[i].first);
+    std::vector<int> principal = sortVector(high);
+    // _vec.insert(_vec.end(), high.begin(), high.end());
+    // principal.insert(principal.begin(), );
+    return principal;
 }
 
 std::deque<int> PmergeMe::sortDeque(std::deque<int>& deq)
