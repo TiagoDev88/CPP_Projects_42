@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <deque>
+#include <string>
 #include <sstream>
 #include <iostream>
 
@@ -11,9 +12,10 @@ class PmergeMe
     std::vector<int> _vec;
     std::vector<int> _input;
     std::deque<int> _deq;
-    static void jacobsthalNumbers(std::size_t number);
-    std::vector<int> sortVector(std::vector<int>& vec);
-    std::deque<int> sortDeque(std::deque<int>& deq);
+    static int parseNumber(const std::string& str);
+    static std::vector<std::size_t> jacobsthalNumbers(std::size_t total);
+    std::vector<int> sortVector(std::vector<int> vec);
+    std::deque<int> sortDeque(std::deque<int> deq);
 
     public:
     PmergeMe();

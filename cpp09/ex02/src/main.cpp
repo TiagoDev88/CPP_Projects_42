@@ -1,10 +1,21 @@
-#include "../inc/PmergeMe.hpp"
-
-
+#include "PmergeMe.hpp"
 
 int main(int argc, char* argv[])
 {
-    PmergeMe p;
-    p.run(argc, argv);
+    if (argc < 2)
+    {
+        std::cerr << "Error" << std::endl;
+        return 1;
+    }
+    try
+    {
+        PmergeMe p;
+        p.run(argc, argv);
+    }
+    catch (const std::exception& e)
+    {
+        std::cerr << "Error" << std::endl;
+        return 1;
+    }
     return 0;
 }
