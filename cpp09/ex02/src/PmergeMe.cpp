@@ -6,51 +6,42 @@
 
 PmergeMe::PmergeMe() {}
 
-PmergeMe::PmergeMe(const PmergeMe& other)
-: _vec(other._vec), _input(other._input), _deq(other._deq) {}
+PmergeMe::PmergeMe(const PmergeMe& other) { (void)other;}
 
 PmergeMe& PmergeMe::operator=(const PmergeMe& other)
 {
-    if (this != &other)
-    {
-        _vec = other._vec;
-        _input = other._input;
-        _deq = other._deq;
-    }
+    (void)other;
     return *this;
 }
 
 PmergeMe::~PmergeMe() {}
 
-// Returns the order in which the "low" elements are inserted into the main chain.
-// The values are indexes of the low vector, ready to use: low[order[0]], low[order[1]], ...
-// low[0] is not included because it always goes first, with no comparisons.
-// Ex.: total = 5  ->  2 1 4 3
-std::vector<std::size_t> PmergeMe::jacobsthalNumbers(std::size_t total)
+std::vector<std::size_t> PmergeMe::jacobsthalNumbers(std::size_t sizeLows)
 {
-    std::vector<std::size_t> order;
+    std::vector<std::size_t> insertOrder;
+    std::size_t done = 1, prev = 1, current = 3; 
 
-    std::size_t done = 1;     // how many low elements are already handled (low[0])
-    std::size_t prev = 1;     // previous Jacobsthal number
-    std::size_t jump = 3;     // current Jacobsthal number: 3, 5, 11, 21, ...
-
-    while (done < total)
+    // 1 loop adds one group to insertOrder
+    while (done < sizeLows)
     {
-        std::size_t top = std::min(jump, total);
+        // current or the last from sizeLows
+        std::size_t groupEnd = std::min(current, sizeLows);
 
-        // walk backwards from top until the ones already done
-        for (std::size_t i = top; i > done; i--)
-            order.push_back(i - 1);   // -1 because the low vector starts at 0
+        // run the group from end to begin (from that group)
+        for (std::size_t i = groupEnd; i > done; i--)
+            insertOrder.push_back(i - 1);
 
-        done = top;
+        done = groupEnd; // I put the "done" with where the group end
 
-        std::size_t next = jump + 2 * prev;
-        prev = jump;
-        jump = next;
+        // Now go to next jacobsthal (cur + 2x before number)
+        std::size_t next = current + (2 * prev); //seq jacob 3, 5, 11, 21 ...
+        prev = current;
+        current = next;
     }
-    return order;
+    return insertOrder;
 }
 
+//check if the input was correct
 int PmergeMe::parseNumber(const std::string& str)
 {
     if (str.empty())
@@ -71,99 +62,212 @@ int PmergeMe::parseNumber(const std::string& str)
 
 void PmergeMe::run(int argc, char** argv)
 {
+    
+    // Vector
+    std::clock_t start = std::clock();
+    std::vector<int> vec;
     for (int i = 1; i < argc; i++)
-    {
-        _input.push_back(parseNumber(argv[i]));
-        std::cout << argv[i] << " ,";
-    }
-    _vec = sortVector(_input);
-    
-    std::cout << std::endl;
+        vec.push_back(parseNumber(argv[i]));
 
-    for (size_t i = 0; i < _vec.size(); i++)
-    {
-        std::cout << "vector " << _vec[i] << ", " << std::endl;
-    }
+    vec = sortInput(vec);
+    std::clock_t end = std::clock();
+    double vecTime = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000000;
     
+    // deque
+    start = std::clock();
+    std::deque<int> deq;
+    for (int i = 1; i < argc; i++)
+        deq.push_back(parseNumber(argv[i]));
+    deq = sortInput(deq);
+    end = std::clock();
+    double deqTime = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000000;
+
+    std::cout << "Before:";
+    for (int i = 1; i < argc; i++)
+        std::cout << " " << argv[i];
+    std::cout << "\nAfter:";
+    for (size_t i = 0; i < vec.size(); i++)
+        std::cout << " " << vec[i];
+
+    std::cout << "\nTime to process a range of " << vec.size()
+            << " elements with std::vector : " << vecTime
+            << " us" << std::endl;
+
+    std::cout << "Time to process a range of " << deq.size()
+            << " elements with std::deque : " << deqTime
+            << " us" << std::endl;
 }
 
-// Merge-Insertion Sort ==  Ford-Johnson
-
-std::vector<int> PmergeMe::sortVector(std::vector<int> vec)
+template <typename Container>
+Container PmergeMe::sortInput(Container cont)
 {
-    if (vec.size() < 2)
-        return vec;
+    if (cont.size() < 2)
+        return cont;
 
-    bool isOdd = (vec.size() % 2 != 0);
-    std::vector<int> leftover;
+    bool isOdd = (cont.size() % 2 != 0); // to check if is odd or pair
+    Container leftover;
     if (isOdd)
     {
-        std::cout << "odd size\n";
-        leftover.push_back(vec.back());
-        vec.pop_back();
+        // retire last number and save if is odd, to have only pairs
+        leftover.push_back(cont.back());
+        cont.pop_back();
     }
+
     std::vector<std::pair<int, int> > pair;
-    for(size_t i = 0; i < vec.size(); i+=2)
+    for(size_t i = 0; i < cont.size(); i+=2)
     {
-        if (vec[i] > vec[i + 1])
-        {
-            pair.push_back(std::make_pair(vec[i], vec[i + 1]));
-        }
+        if (cont[i] > cont[i + 1])
+            pair.push_back(std::make_pair(cont[i], cont[i + 1]));
         else
-        {
-            pair.push_back(std::make_pair(vec[i + 1], vec[i]));
-        }
+            pair.push_back(std::make_pair(cont[i + 1], cont[i]));
     }
-    
-    std::vector<int> high;
+
+    // to put only High numbers
+    Container high;
 
     for (size_t i = 0; i < pair.size(); i++)
         high.push_back(pair[i].first);
-    
-    high = sortVector(high);
 
-    // used[j] stops the same pair from being picked twice when there are repeated "a" values
-    std::vector<int> low;
-    std::vector<bool> used(pair.size(), false);
+    // to sort the highs
+    high = sortInput(high);
+
+    Container low;
+    std::vector<bool> wasUsed(pair.size(), false);
+
     for (size_t i = 0; i < high.size(); i++)
     {
         for (size_t j = 0; j < pair.size(); j++)
         {
-            if (!used[j] && pair[j].first == high[i])
+            //pair not used and it belongs to high[i]
+            if (!wasUsed[j] && pair[j].first == high[i])
             {
                 low.push_back(pair[j].second);
-                used[j] = true;
-                break;
+                wasUsed[j] = true;
+                break; // find pair and put "true" and skip to next number
             }
         }
     }
-    std::cout << std::endl;
 
     if (isOdd)
         low.push_back(leftover[0]);
-    std::vector<int> mainChain(high);
+
+    Container mainChain(high);
     mainChain.insert(mainChain.begin(), low[0]);
 
-    std::vector<std::size_t> order = jacobsthalNumbers(low.size());
-    for (std::size_t i = 0; i < order.size(); i++)
-    {
-        std::size_t pos = order[i];
-        int value = low[pos];
+    // put count of numbers in the container of "low", [392, 112, 201] == 3
+    // get the order (indexes of low) to insert the lows
+    // low.size() = 6 -> [2, 1, 4, 3, 5] low[0] was already in the mainChain
 
-        // low[pos] is smaller than its pair high[pos], so we only search before it.
-        // The leftover has no pair, so it searches the whole chain.
-        std::vector<int>::iterator limit = mainChain.end();
+    std::vector<std::size_t> insertOrder = jacobsthalNumbers(low.size());
+
+    for (std::size_t i = 0; i < insertOrder.size(); i++)
+    {
+        std::size_t pos = insertOrder[i];   // what number insert now? the index (e.g 4)
+        int value = low[pos];         // the number from index (e.g 291)
+    
+        // default I put the end from mainChain to search
+        typename Container::iterator limit = mainChain.end();
+    
+        // if the index was low compare to size
+        // search the number from high, because I dont need to pass
+        // because the number from low, was under high
         if (pos < high.size())
             limit = std::find(mainChain.begin(), mainChain.end(), high[pos]);
-
-        std::vector<int>::iterator where = std::lower_bound(mainChain.begin(), limit, value);
+    
+        // binary search between begin and the limit and return the pos to put value
+        // after the smaller numbers and before the bigger number
+        typename Container::iterator where = std::lower_bound(mainChain.begin(), limit, value);
+    
+        // insert the number
         mainChain.insert(where, value);
     }
     return mainChain;
 }
 
-// TODO: implement Ford-Johnson for deque
-std::deque<int> PmergeMe::sortDeque(std::deque<int> deq)
+
+/*
+std::vector<int> PmergeMe::sortVector(std::vector<int> vec)
 {
-    return deq;
+    if (vec.size() < 2)
+        return vec;
+
+    bool isOdd = (vec.size() % 2 != 0); // to check if is odd or pair
+    std::vector<int> leftover;
+    if (isOdd)
+    {
+        // retire last number and save if is odd, to have only pairs
+        leftover.push_back(vec.back());
+        vec.pop_back();
+    }
+
+    std::vector<std::pair<int, int> > pair;
+    for(size_t i = 0; i < vec.size(); i+=2)
+    {
+        if (vec[i] > vec[i + 1])
+            pair.push_back(std::make_pair(vec[i], vec[i + 1]));
+        else
+            pair.push_back(std::make_pair(vec[i + 1], vec[i]));
+    }
+
+    // to put only High numbers
+    std::vector<int> high;
+
+    for (size_t i = 0; i < pair.size(); i++)
+        high.push_back(pair[i].first);
+
+    // to sort the highs
+    high = sortVector(high);
+
+    std::vector<int> low;
+    std::vector<bool> wasUsed(pair.size(), false);
+
+    for (size_t i = 0; i < high.size(); i++)
+    {
+        for (size_t j = 0; j < pair.size(); j++)
+        {
+            //pair not used and it belongs to high[i]
+            if (!wasUsed[j] && pair[j].first == high[i])
+            {
+                low.push_back(pair[j].second);
+                wasUsed[j] = true;
+                break; // find pair and put "true" and skip to next number
+            }
+        }
+    }
+
+    if (isOdd)
+        low.push_back(leftover[0]);
+
+    std::vector<int> mainChain(high);
+    mainChain.insert(mainChain.begin(), low[0]);
+
+    // put count of numbers in the container of "low", [392, 112, 201] == 3
+    // get the order (indexes of low) to insert the lows
+    // low.size() = 6 -> [2, 1, 4, 3, 5] low[0] was already in the mainChain
+
+    std::vector<std::size_t> insertOrder = jacobsthalNumbers(low.size());
+
+    for (std::size_t i = 0; i < insertOrder.size(); i++)
+    {
+        std::size_t pos = insertOrder[i];   // what number insert now? the index (e.g 4)
+        int value = low[pos];         // the number from index (e.g 291)
+
+        // default I put the end from mainChain to search
+        std::vector<int>::iterator limit = mainChain.end();
+
+        // if the index was low compare to size
+        // search the number from high, because I dont need to pass
+        // because the number from low, was under high
+        if (pos < high.size())
+            limit = std::find(mainChain.begin(), mainChain.end(), high[pos]);
+
+        // binary search between begin and the limit and return the pos to put value
+        // after the smaller numbers and before the bigger number
+        std::vector<int>::iterator where = std::lower_bound(mainChain.begin(), limit, value);
+
+        // insert the number
+        mainChain.insert(where, value);
+    }
+    return mainChain;
 }
+*/
