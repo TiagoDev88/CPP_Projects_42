@@ -4,6 +4,10 @@
 #include <fstream>
 #include <map>
 #include <exception>
+#include <string>
+#include <cstdlib>    // std::strtod, std::atoi
+#include <stdexcept>  // std::runtime_error
+#include <cctype>     // std::isdigit
 
 
 class BitcoinExchange
