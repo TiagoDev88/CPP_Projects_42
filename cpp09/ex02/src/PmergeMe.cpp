@@ -60,7 +60,7 @@ int PmergeMe::parseNumber(const std::string& str)
     return static_cast<int>(value);
 }
 
-void PmergeMe::run(int argc, char** argv)
+void PmergeMe::run(int argc, char** argv) const
 {
     
     // Vector
@@ -108,7 +108,7 @@ Container PmergeMe::sortInput(Container cont)
     Container leftover;
     if (isOdd)
     {
-        // retire last number and save if is odd, to have only pairs
+        // remove last number and save if is odd, to have only pairs
         leftover.push_back(cont.back());
         cont.pop_back();
     }

@@ -17,7 +17,7 @@ class PmergeMe
     static std::vector<std::size_t> jacobsthalNumbers(std::size_t total);
 
     template <typename Container>
-    Container sortInput(Container cont);
+    static Container sortInput(Container cont);
 
     public:
     PmergeMe();
@@ -25,5 +25,5 @@ class PmergeMe
     PmergeMe& operator=(const PmergeMe& other);
     ~PmergeMe();
 
-    void run(int argc, char** argv);
+    void run(int argc, char** argv) const;
 };
