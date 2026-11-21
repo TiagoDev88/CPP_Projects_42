@@ -94,7 +94,7 @@ void PmergeMe::run(int argc, char** argv) const
             << " us" << std::endl;
 
     std::cout << "Time to process a range of " << deq.size()
-            << " elements with std::deque : " << deqTime
+            << " elements with std::deque  : " << deqTime
             << " us" << std::endl;
 }
 
@@ -112,7 +112,7 @@ Container PmergeMe::sortInput(Container cont)
         leftover.push_back(cont.back());
         cont.pop_back();
     }
-
+    Container high;
     std::vector<std::pair<int, int> > pair;
     for(size_t i = 0; i < cont.size(); i+=2)
     {
@@ -120,13 +120,9 @@ Container PmergeMe::sortInput(Container cont)
             pair.push_back(std::make_pair(cont[i], cont[i + 1]));
         else
             pair.push_back(std::make_pair(cont[i + 1], cont[i]));
+
+        high.push_back(pair.back().first);     // to put only High numbers
     }
-
-    // to put only High numbers
-    Container high;
-
-    for (size_t i = 0; i < pair.size(); i++)
-        high.push_back(pair[i].first);
 
     // to sort the highs
     high = sortInput(high);
