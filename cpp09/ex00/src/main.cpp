@@ -5,7 +5,7 @@ int main(int argc, char* argv[])
     if (argc < 2)
     {
         std::cerr << "Error: Please put one file an argument\n";
-        return -1;
+        return 1;
     }
     try
     {
@@ -17,6 +17,7 @@ int main(int argc, char* argv[])
     catch(const std::exception& e)
     {
         std::cerr << e.what() << '\n';
+        return 1;
     }
     return 0;
 }

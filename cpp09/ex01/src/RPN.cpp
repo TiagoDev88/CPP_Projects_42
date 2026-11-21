@@ -32,12 +32,12 @@ void RPN::calculateExpression(const std::string& input)
         {
             if (_elements.size() > 1)
             {
-                int right = _elements.top();
+                long right = _elements.top();
                 _elements.pop();
-                int left = _elements.top();
+                long left = _elements.top();
                 _elements.pop();
                 char c = word[0];
-                int result = 0;
+                long result = 0;
                 switch (c)
                 {
                     case '+':
@@ -47,6 +47,10 @@ void RPN::calculateExpression(const std::string& input)
                         result = left - right;
                         break;
                     case '/':
+                        if (right == 0)
+                            throw std::runtime_error("Error");
+                        if (left == INT_MIN && right == -1)
+                            throw std::runtime_error("Error");
                         result = left / right;
                         break;
                     case '*':
@@ -56,6 +60,8 @@ void RPN::calculateExpression(const std::string& input)
                         throw std::runtime_error("Error");
                         break;
                 }
+                if (result < INT_MIN || result > INT_MAX)
+                    throw std::runtime_error("Error");
                 _elements.push(result);
             }
             else

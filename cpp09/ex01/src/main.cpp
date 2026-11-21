@@ -8,7 +8,7 @@ int main(int argc, char* argv[])
     {
         std::cerr << "Error: please input a inverted Polish mathematical expression as an argument."
                 << std::endl;
-        return -1;
+        return 1;
     }
     try
     {
@@ -19,6 +19,7 @@ int main(int argc, char* argv[])
     catch(const std::exception& e)
     {
         std::cerr << e.what() << '\n';
+        return 1;
     }
 
     return 0;
